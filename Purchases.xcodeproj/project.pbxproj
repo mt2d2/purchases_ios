@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5791B2A8E91003280EA /* AppDelegate.swift */; };
-		1E99D57C1B2A8E91003280EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D57B1B2A8E91003280EA /* ViewController.swift */; };
 		1E99D57F1B2A8E91003280EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D57D1B2A8E91003280EA /* Main.storyboard */; };
 		1E99D5811B2A8E91003280EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D5801B2A8E91003280EA /* Images.xcassets */; };
 		1E99D5841B2A8E91003280EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D5821B2A8E91003280EA /* LaunchScreen.xib */; };
 		1E99D5901B2A8E91003280EA /* PurchasesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D58F1B2A8E91003280EA /* PurchasesTests.swift */; };
+		1E99D59A1B2A998A003280EA /* AddPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5991B2A998A003280EA /* AddPurchaseViewController.swift */; };
+		1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */; };
+		1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5A11B2A9E20003280EA /* Purchases.swift */; };
+		1E99D5A41B2AA969003280EA /* PurchaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +32,16 @@
 		1E99D5741B2A8E91003280EA /* Purchases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Purchases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E99D5781B2A8E91003280EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E99D5791B2A8E91003280EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E99D57B1B2A8E91003280EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E99D57E1B2A8E91003280EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E99D5801B2A8E91003280EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1E99D5831B2A8E91003280EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1E99D5891B2A8E91003280EA /* PurchasesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PurchasesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E99D58E1B2A8E91003280EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E99D58F1B2A8E91003280EA /* PurchasesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesTests.swift; sourceTree = "<group>"; };
+		1E99D5991B2A998A003280EA /* AddPurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPurchaseViewController.swift; sourceTree = "<group>"; };
+		1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseListTableViewController.swift; sourceTree = "<group>"; };
+		1E99D5A11B2A9E20003280EA /* Purchases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purchases.swift; sourceTree = "<group>"; };
+		1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				1E99D5791B2A8E91003280EA /* AppDelegate.swift */,
-				1E99D57B1B2A8E91003280EA /* ViewController.swift */,
 				1E99D57D1B2A8E91003280EA /* Main.storyboard */,
+				1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */,
 				1E99D5801B2A8E91003280EA /* Images.xcassets */,
 				1E99D5821B2A8E91003280EA /* LaunchScreen.xib */,
 				1E99D5771B2A8E91003280EA /* Supporting Files */,
+				1E99D5991B2A998A003280EA /* AddPurchaseViewController.swift */,
+				1E99D5A11B2A9E20003280EA /* Purchases.swift */,
+				1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E99D57C1B2A8E91003280EA /* ViewController.swift in Sources */,
+				1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */,
+				1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */,
 				1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */,
+				1E99D59A1B2A998A003280EA /* AddPurchaseViewController.swift in Sources */,
+				1E99D5A41B2AA969003280EA /* PurchaseTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +423,7 @@
 				1E99D5951B2A8E91003280EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E99D5961B2A8E91003280EA /* Build configuration list for PBXNativeTarget "PurchasesTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +432,7 @@
 				1E99D5981B2A8E91003280EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
