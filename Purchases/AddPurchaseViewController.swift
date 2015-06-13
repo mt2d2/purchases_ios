@@ -11,13 +11,13 @@ import UIKit
 class AddPurchaseViewController: UIViewController {
    
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var costField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.nameField.becomeFirstResponder()
-        
-        // Do any additional setup after loading the view.
+        self.nameField.addTarget(self.costField, action: "becomeFirstResponder", forControlEvents: UIControlEvents.EditingDidEndOnExit)
     }
 
     override func didReceiveMemoryWarning() {

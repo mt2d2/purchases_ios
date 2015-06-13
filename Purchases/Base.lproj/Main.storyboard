@@ -51,6 +51,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="costField" destination="m32-Cf-Lf0" id="e7m-hz-qGQ"/>
                         <outlet property="nameField" destination="1w3-MU-SvG" id="dPa-2s-rnk"/>
                     </connections>
                 </viewController>
