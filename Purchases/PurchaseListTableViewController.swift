@@ -16,32 +16,35 @@ class PurchaseListTableViewController: UITableViewController {
         self.loadInitialData()
     }
     
+    func refresh(sender: AnyObject) {
+        self.loadInitialData()
+        self.refreshControl?.endRefreshing()
+    }
+    
     func loadInitialData() {
-        self.purchases.removeAll(keepCapacity: true)
+// todo, hazard, removing this needs to be kepy in sync
+//        self.purchases.removeAll(keepCapacity: true)
         
         let url = "http://Deanna.local:8080/purchases"
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
             do
             {
                 let str = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                
                 self.purchases <-- str
-                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.reloadData()
                 })
                 
             } catch _ {
-                
-                
             }
-            
-            
         })!.resume()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         self.loadInitialData()
         
