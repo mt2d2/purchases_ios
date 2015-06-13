@@ -13,21 +13,31 @@ class PurchaseListTableViewController: UITableViewController {
     var purchases = [Purchase]()
     
     @IBAction func unwindToPurchaseList(segue: UIStoryboardSegue) {
+        self.loadInitialData()
     }
     
     func loadInitialData() {
+        self.purchases.removeAll(keepCapacity: true)
+        
         let url = "http://Deanna.local:8080/purchases"
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
-            var error: NSError?
-            let str: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &error)!
-
-            self.purchases <-- str
+            do
+            {
+                let str = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                
+                self.purchases <-- str
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+                
+            } catch _ {
+                
+                
+            }
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-            })
             
-        }).resume()
+        })!.resume()
     }
     
     override func viewDidLoad() {
