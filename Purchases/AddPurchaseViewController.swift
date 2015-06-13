@@ -9,10 +9,14 @@
 import UIKit
 
 class AddPurchaseViewController: UIViewController {
+   
+    @IBOutlet weak var nameField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.nameField.becomeFirstResponder()
+        
         // Do any additional setup after loading the view.
     }
 

@@ -17,18 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a new purchase…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1w3-MU-SvG">
-                                <rect key="frame" x="16" y="285" width="568" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of purchase…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1w3-MU-SvG">
+                                <rect key="frame" x="16" y="84" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cost…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m32-Cf-Lf0">
+                                <rect key="frame" x="16" y="122" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="1w3-MU-SvG" secondAttribute="centerY" id="EqC-aO-AhZ"/>
-                            <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ISz-5L-jm5"/>
-                            <constraint firstItem="1w3-MU-SvG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Qnp-bw-XzA"/>
-                            <constraint firstAttribute="centerX" secondItem="1w3-MU-SvG" secondAttribute="centerX" id="YJc-sd-jV0"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="m32-Cf-Lf0" secondAttribute="leading" id="3EA-fI-7IY"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="F5o-M9-h0g"/>
+                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G3u-Uz-tIp"/>
+                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="top" secondItem="1w3-MU-SvG" secondAttribute="bottom" constant="8" symbolic="YES" id="RsZ-Yw-xd5"/>
+                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="oAG-Io-mld"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="trailing" secondItem="m32-Cf-Lf0" secondAttribute="trailing" id="wYO-OM-zka"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Purchase" id="8ag-HP-cmu">
@@ -43,6 +50,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="1w3-MU-SvG" id="dPa-2s-rnk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="DQL-mQ-b6d" userLabel="Exit" sceneMemberID="exit"/>
