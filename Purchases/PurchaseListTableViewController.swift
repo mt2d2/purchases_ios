@@ -16,7 +16,7 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func loadInitialData() {
-        let url = "http://localhost:8080/purchases"
+        let url = "http://Deanna.local:8080/purchases"
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
             var error: NSError?
             let str: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &error)!

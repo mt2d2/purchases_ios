@@ -15,9 +15,18 @@ struct Purchase: Deserializable {
     var timeBought = NSDate()
     
     init(data: [String: AnyObject]) {
-        id <-- data["id"]
-        name <-- data["name"]
-        timeBought <-- data["time_bought"]
-        cost <-- data["cost"]
+        self.id <-- data["id"]
+        self.name <-- data["name"]
+        self.timeBought <-- data["time_bought"]
+        self.cost <-- data["cost"]
+    }
+    
+    init(fromName: String, fromCost: Double) {
+        self.name = fromName
+        self.cost = fromCost
+    }
+    
+    func toJSON() -> String {
+        return "{ \"name\": \"\(self.name)\", \"cost\": \(self.cost) }"
     }
 }
