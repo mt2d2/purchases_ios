@@ -16,11 +16,18 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func loadInitialData() {
-        let purchase = Purchase(fromName: "Tester", fromCost: 28.81)
-        self.purchases.append(purchase)
-    
-        let purchase2 = Purchase(fromName: "asdf", fromCost: 291.83)
-        self.purchases.append(purchase2)
+        let url = "http://localhost:8080/purchases"
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
+            var error: NSError?
+            let str: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &error)!
+
+            self.purchases <-- str
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+            
+        }).resume()
     }
     
     override func viewDidLoad() {

@@ -16,6 +16,7 @@
 		1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */; };
 		1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5A11B2A9E20003280EA /* Purchases.swift */; };
 		1E99D5A41B2AA969003280EA /* PurchaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */; };
+		1E99D5A61B2BB998003280EA /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5A51B2BB998003280EA /* JSONHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseListTableViewController.swift; sourceTree = "<group>"; };
 		1E99D5A11B2A9E20003280EA /* Purchases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purchases.swift; sourceTree = "<group>"; };
 		1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseTableViewCell.swift; sourceTree = "<group>"; };
+		1E99D5A51B2BB998003280EA /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				1E99D5991B2A998A003280EA /* AddPurchaseViewController.swift */,
 				1E99D5A11B2A9E20003280EA /* Purchases.swift */,
 				1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */,
+				1E99D5A51B2BB998003280EA /* JSONHelper.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */,
 				1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */,
 				1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */,
+				1E99D5A61B2BB998003280EA /* JSONHelper.swift in Sources */,
 				1E99D59A1B2A998A003280EA /* AddPurchaseViewController.swift in Sources */,
 				1E99D5A41B2AA969003280EA /* PurchaseTableViewCell.swift in Sources */,
 			);

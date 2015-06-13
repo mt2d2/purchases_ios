@@ -8,13 +8,16 @@
 
 import UIKit
 
-class Purchase: NSObject {
+struct Purchase: Deserializable {
+    var id = 0
     var name = ""
     var cost = 0.0
     var timeBought = NSDate()
     
-    init(fromName: String, fromCost: Double) {
-        self.name = fromName
-        self.cost = fromCost
+    init(data: [String: AnyObject]) {
+        id <-- data["id"]
+        name <-- data["name"]
+        timeBought <-- data["time_bought"]
+        cost <-- data["cost"]
     }
 }
