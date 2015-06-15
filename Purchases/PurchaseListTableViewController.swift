@@ -41,6 +41,7 @@ class PurchaseListTableViewController: UITableViewController {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
                         self.totalLabel?.text = "Total: $\(self.costTotal())"
+                        // TODO shift the label total cost view to red as it approaches maximum
                     })
                 }
             } catch _ {
