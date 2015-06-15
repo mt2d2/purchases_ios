@@ -27,6 +27,6 @@ struct Purchase: Deserializable {
     }
     
     func toJSON() -> String {
-        return "{ \"name\": \"\(self.name)\", \"cost\": \(self.cost) }"
+        return "{\"name\":\"\(self.name)\",\"cost\":\(self.cost)}"
     }
 }
