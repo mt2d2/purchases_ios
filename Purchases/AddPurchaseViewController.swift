@@ -37,11 +37,30 @@ class AddPurchaseViewController: UIViewController {
         return nil
     }
     
+    func shake(field: UITextField) {
+        // http://stackoverflow.com/questions/1632364/shake-visual-effect-on-iphone-not-shaking-the-device
+        let anim = CAKeyframeAnimation( keyPath:"transform" )
+        anim.values = [
+            NSValue( CATransform3D:CATransform3DMakeTranslation(-6, 0, 0 ) ),
+            NSValue( CATransform3D:CATransform3DMakeTranslation( 6, 0, 0 ) )
+        ]
+        anim.autoreverses = true
+        anim.repeatCount = 2
+        anim.duration = 7/100
+        
+        field.layer.addAnimation(anim, forKey: nil)
+    }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
-                if self.nameField.text!.isEmpty || self.costField.text!.isEmpty {
-                   UIAlertView(title: "Bad entries", message: "We need a name and cost.", delegate: nil, cancelButtonTitle: "Got it!").show()
+                if self.nameField.text!.isEmpty {
+                    shake(self.nameField)
+                    return false
+                }
+                
+                if self.costField.text!.isEmpty {
+                    shake(self.costField)
                     return false
                 }
                 
