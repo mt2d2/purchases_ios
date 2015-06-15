@@ -82,9 +82,14 @@ class PurchaseListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListPrototypeCell", forIndexPath: indexPath) as! PurchaseTableViewCell
         let purchase = self.purchases[indexPath.row]
         
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.doesRelativeDateFormatting = true
+        let dateString = dateFormatter.stringFromDate(purchase.timeBought)
+
         cell.nameLabel.text = purchase.name
         cell.costLabel.text = String(format: "$%.2f", purchase.cost)
-        cell.timeBoughtLabel.text = purchase.timeBought.description
+        cell.timeBoughtLabel.text = dateString
         
         return cell
     }
