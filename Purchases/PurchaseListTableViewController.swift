@@ -16,9 +16,13 @@ class PurchaseListTableViewController: UITableViewController {
         self.loadInitialData()
     }
     
+    func costTotal() -> Double {
+        return self.purchases.reduce(0, combine: {$0 + $1.cost})
+    }
+    
     func refresh(sender: AnyObject) {
         self.loadInitialData()
-        self.refreshControl?.endRefreshing()
+        self.refreshControl!.endRefreshing()
     }
     
     func loadInitialData() {
