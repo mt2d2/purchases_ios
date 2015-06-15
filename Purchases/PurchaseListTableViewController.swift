@@ -10,6 +10,8 @@ import UIKit
 
 class PurchaseListTableViewController: UITableViewController {
     
+    @IBOutlet weak var totalLabel: UILabel!
+    
     var purchases = [Purchase]()
     
     @IBAction func unwindToPurchaseList(segue: UIStoryboardSegue) {
@@ -37,11 +39,13 @@ class PurchaseListTableViewController: UITableViewController {
                 self.purchases <-- str
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.reloadData()
+                    self.totalLabel?.text = "Total: $\(self.costTotal())"
                 })
                 
             } catch _ {
             }
         })!.resume()
+        
     }
     
     override func viewDidLoad() {
