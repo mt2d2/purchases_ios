@@ -35,13 +35,14 @@ class PurchaseListTableViewController: UITableViewController {
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
             do
             {
-                let str = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                self.purchases <-- str
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.reloadData()
-                    self.totalLabel?.text = "Total: $\(self.costTotal())"
-                })
-                
+                if let json = data {
+                    let str = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments)
+                    self.purchases <-- str
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        self.totalLabel?.text = "Total: $\(self.costTotal())"
+                    })
+                }
             } catch _ {
             }
         })!.resume()
