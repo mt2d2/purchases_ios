@@ -41,11 +41,12 @@ class AddPurchaseViewController: UIViewController {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
                 if self.nameField.text!.isEmpty || self.costField.text!.isEmpty {
-                    // do an error thing!
+                   UIAlertView(title: "Bad entries!", message: "We need a name and cost.", delegate: nil, cancelButtonTitle: "Got it!").show()
                     return false
                 }
                 
                 if self.convertCostTestField() == nil {
+                    UIAlertView(title: "Bad entries!", message: "We need a valid, numeric cost.", delegate: nil, cancelButtonTitle: "Ok").show()
                     return false
                 }
             }
