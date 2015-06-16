@@ -10,6 +10,7 @@ import UIKit
 
 class PurchaseListTableViewController: UITableViewController {
     
+    @IBOutlet weak var totalView: UIView!
     @IBOutlet weak var totalLabel: UILabel!
     
     var purchases = [Purchase]()
@@ -27,6 +28,26 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl!.endRefreshing()
     }
     
+    func setBlankData() {
+        self.totalView?.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        self.totalLabel?.text = ""
+    }
+    
+    func colorForTotalCost() -> UIColor {
+        let spent = self.costTotal()
+        let max = 1500.0 // TODO grab this from the server/let app decide
+        
+        let percentage = (spent / max)
+        
+        // http://stackoverflow.com/questions/1696044/how-to-delete-a-row-in-a-sqlite-database-table
+        let r = 2.0 * percentage
+        let g = 2.0 * (1 - percentage)
+        let b = 0
+        let a = 0.1
+        
+        return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(a))
+    }
+    
     func loadInitialData() {
 // todo, hazard, removing this needs to be kepy in sync
 //        self.purchases.removeAll(keepCapacity: true)
@@ -40,8 +61,11 @@ class PurchaseListTableViewController: UITableViewController {
                     self.purchases <-- str
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
-                        self.totalLabel?.text = "Total: $\(self.costTotal())"
-                        // TODO shift the label total cost view to red as it approaches maximum
+
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.totalView?.backgroundColor = self.colorForTotalCost()
+                            self.totalLabel?.text = "Total: $\(self.costTotal())"
+                        })
                     })
                 }
             } catch _ {
@@ -56,6 +80,7 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
+        self.setBlankData()
         self.loadInitialData()
         
         // Uncomment the following line to preserve selection between presentations
