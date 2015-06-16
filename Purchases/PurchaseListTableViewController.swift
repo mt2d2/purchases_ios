@@ -85,9 +85,10 @@ class PurchaseListTableViewController: UITableViewController {
         let purchase = self.purchases[indexPath.row]
         
         let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.doesRelativeDateFormatting = true
-        let dateString = dateFormatter.stringFromDate(purchase.timeBought)
+        let dateString = dateFormatter.stringFromDate(purchase.timeBought!)
 
         cell.nameLabel.text = purchase.name
         cell.costLabel.text = String(format: "$%.2f", purchase.cost)

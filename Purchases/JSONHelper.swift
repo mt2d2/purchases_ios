@@ -102,6 +102,8 @@ public func <-- (inout property: NSDate?, valueAndFormat: (AnyObject?, AnyObject
     if let dateString = convertToNilIfNull(valueAndFormat.0) as? String {
         if let formatString = convertToNilIfNull(valueAndFormat.1) as? String {
             let dateFormatter = NSDateFormatter()
+            dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
             dateFormatter.dateFormat = formatString
             if let newDate = dateFormatter.dateFromString(dateString) {
                 newValue = newDate
