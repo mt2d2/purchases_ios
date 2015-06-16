@@ -64,18 +64,10 @@ class PurchaseListTableViewController: UITableViewController {
 // todo, hazard, removing this needs to be kepy in sync
 //        self.purchases.removeAll(keepCapacity: true)
         
-        let url = "http://Deanna.local:8080/purchases"
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!, completionHandler: { (data, response, error) -> Void in
-            do
-            {
-                if let json = data {
-                    let str = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments)
-                    self.purchases <-- str
-                    self.presentData()
-                }
-            } catch _ {
-            }
-        })!.resume()
+        JSONClient.get("http://Deanna.local:8080/purchases") {(json) in
+            self.purchases <-- json
+            self.presentData()
+        }
     }
     
     override func viewDidLoad() {

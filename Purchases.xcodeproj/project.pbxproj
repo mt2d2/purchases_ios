@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E74FCFC1B2FD2E200A22176 /* JSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */; };
 		1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5791B2A8E91003280EA /* AppDelegate.swift */; };
 		1E99D57F1B2A8E91003280EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D57D1B2A8E91003280EA /* Main.storyboard */; };
 		1E99D5811B2A8E91003280EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D5801B2A8E91003280EA /* Images.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONClient.swift; sourceTree = "<group>"; };
 		1E99D5741B2A8E91003280EA /* Purchases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Purchases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E99D5781B2A8E91003280EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E99D5791B2A8E91003280EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				1E99D5A11B2A9E20003280EA /* Purchases.swift */,
 				1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */,
 				1E99D5A51B2BB998003280EA /* JSONHelper.swift */,
+				1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */,
 				1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */,
+				1E74FCFC1B2FD2E200A22176 /* JSONClient.swift in Sources */,
 				1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */,
 				1E99D5A61B2BB998003280EA /* JSONHelper.swift in Sources */,
 				1E99D59A1B2A998A003280EA /* AddPurchaseViewController.swift in Sources */,
