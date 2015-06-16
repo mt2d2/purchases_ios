@@ -61,9 +61,6 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func loadInitialData() {
-// todo, hazard, removing this needs to be kepy in sync
-//        self.purchases.removeAll(keepCapacity: true)
-        
         JSONClient.get("http://Deanna.local:8080/purchases") {(json) in
             self.purchases <-- json
             self.presentData()
