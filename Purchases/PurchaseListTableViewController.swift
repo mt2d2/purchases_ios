@@ -28,9 +28,21 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl!.endRefreshing()
     }
     
-    func setBlankData() {
+    func presentBlank() {
         self.totalView?.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
         self.totalLabel?.text = ""
+    }
+    
+    func presentData() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+            
+            UIView.animateWithDuration(0.4, animations: {
+                self.totalView?.backgroundColor = self.colorForTotalCost()
+                self.totalLabel?.text = "Total: $\(self.costTotal())"
+            })
+        })
+
     }
     
     func colorForTotalCost() -> UIColor {
@@ -59,19 +71,11 @@ class PurchaseListTableViewController: UITableViewController {
                 if let json = data {
                     let str = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments)
                     self.purchases <-- str
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.tableView.reloadData()
-
-                        UIView.animateWithDuration(0.4, animations: {
-                            self.totalView?.backgroundColor = self.colorForTotalCost()
-                            self.totalLabel?.text = "Total: $\(self.costTotal())"
-                        })
-                    })
+                    self.presentData()
                 }
             } catch _ {
             }
         })!.resume()
-        
     }
     
     override func viewDidLoad() {
@@ -80,7 +84,7 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
-        self.setBlankData()
+        self.presentBlank()
         self.loadInitialData()
         
         // Uncomment the following line to preserve selection between presentations
@@ -121,27 +125,26 @@ class PurchaseListTableViewController: UITableViewController {
         
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
+    
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            self.purchases.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            self.presentData()
+            
+            // TODO commit the change to the server
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            return // unsupported
+        }
     }
-    */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
