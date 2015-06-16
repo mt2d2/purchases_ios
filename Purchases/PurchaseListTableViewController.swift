@@ -128,7 +128,6 @@ class PurchaseListTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.presentData()
             
-            // TODO commit the change to the server
             JSONClient.delete("http://Deanna.local:8080/purchases/\(removedPurchase.id)")
 
         } else if editingStyle == .Insert {
