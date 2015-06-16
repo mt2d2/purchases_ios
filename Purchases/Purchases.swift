@@ -12,7 +12,7 @@ struct Purchase: Deserializable {
     var id = 0
     var name = ""
     var cost = 0.0
-    var timeBought: NSDate?
+    var timeBought = NSDate()
     
     init(data: [String: AnyObject]) {
         self.id <-- data["id"]
