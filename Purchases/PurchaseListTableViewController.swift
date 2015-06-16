@@ -127,11 +127,13 @@ class PurchaseListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            self.purchases.removeAtIndex(indexPath.row)
+            let removedPurchase = self.purchases.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.presentData()
             
             // TODO commit the change to the server
+            JSONClient.delete("http://Deanna.local:8080/purchases/\(removedPurchase.id)")
+
         } else if editingStyle == .Insert {
             return // unsupported
         }
