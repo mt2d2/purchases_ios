@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# http://stackoverflow.com/questions/6428353/best-way-to-add-license-section-to-ios-settings-bundle/6453507#6453507
+
 use strict;
 
 my $out = "../Settings.bundle/en.lproj/Acknowledgements.strings";
