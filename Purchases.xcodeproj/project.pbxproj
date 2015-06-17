@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E74FCFC1B2FD2E200A22176 /* JSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */; };
+		1E74FCFE1B312F5900A22176 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E74FCFD1B312F5900A22176 /* Settings.bundle */; };
+		1E74FD021B313BE600A22176 /* licenses in Resources */ = {isa = PBXBuildFile; fileRef = 1E74FD011B313BE600A22176 /* licenses */; };
 		1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5791B2A8E91003280EA /* AppDelegate.swift */; };
 		1E99D57F1B2A8E91003280EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D57D1B2A8E91003280EA /* Main.storyboard */; };
 		1E99D5811B2A8E91003280EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D5801B2A8E91003280EA /* Images.xcassets */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONClient.swift; sourceTree = "<group>"; };
+		1E74FCFD1B312F5900A22176 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1E74FD011B313BE600A22176 /* licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = licenses; sourceTree = "<group>"; };
 		1E99D5741B2A8E91003280EA /* Purchases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Purchases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E99D5781B2A8E91003280EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E99D5791B2A8E91003280EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 		1E99D5761B2A8E91003280EA /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
+				1E74FD011B313BE600A22176 /* licenses */,
 				1E99D5791B2A8E91003280EA /* AppDelegate.swift */,
 				1E99D57D1B2A8E91003280EA /* Main.storyboard */,
 				1E99D59B1B2A9A59003280EA /* PurchaseListTableViewController.swift */,
@@ -98,6 +103,7 @@
 				1E99D5A31B2AA969003280EA /* PurchaseTableViewCell.swift */,
 				1E99D5A51B2BB998003280EA /* JSONHelper.swift */,
 				1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */,
+				1E74FCFD1B312F5900A22176 /* Settings.bundle */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -136,6 +142,7 @@
 			buildPhases = (
 				1E99D5701B2A8E91003280EA /* Sources */,
 				1E99D5711B2A8E91003280EA /* Frameworks */,
+				1E74FD031B313C6D00A22176 /* ShellScript */,
 				1E99D5721B2A8E91003280EA /* Resources */,
 			);
 			buildRules = (
@@ -209,7 +216,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E74FCFE1B312F5900A22176 /* Settings.bundle in Resources */,
 				1E99D57F1B2A8E91003280EA /* Main.storyboard in Resources */,
+				1E74FD021B313BE600A22176 /* licenses in Resources */,
 				1E99D5841B2A8E91003280EA /* LaunchScreen.xib in Resources */,
 				1E99D5811B2A8E91003280EA /* Images.xcassets in Resources */,
 			);
@@ -223,6 +232,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E74FD031B313C6D00A22176 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${SRCROOT}\"/Purchases/licenses\nperl genAcks.pl";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E99D5701B2A8E91003280EA /* Sources */ = {
