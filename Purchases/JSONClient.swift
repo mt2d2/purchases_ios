@@ -16,7 +16,7 @@ class JSONClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: completionHandler)!.resume()
+        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: completionHandler).resume()
     }
     
     class func post(url: String, body: String) {
