@@ -61,7 +61,7 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func loadInitialData() {
-        JSONClient.get("http://Deanna.local:8080/purchases") {(json) in
+        JSONClient.get("https://mt2d2.net/purchases") {(json) in
             self.purchases <-- json
             self.presentData()
         }
@@ -128,7 +128,7 @@ class PurchaseListTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.presentData()
             
-            JSONClient.delete("http://Deanna.local:8080/purchases/\(removedPurchase.id)")
+            JSONClient.delete("https://mt2d2.net/purchases/\(removedPurchase.id)")
 
         } else if editingStyle == .Insert {
             return // unsupported

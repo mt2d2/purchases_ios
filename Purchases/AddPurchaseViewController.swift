@@ -82,7 +82,7 @@ class AddPurchaseViewController: UIViewController {
                 let newPurchase = Purchase(fromName: self.nameField.text!, fromCost: self.convertCostTestField()!) // ok to unwrap, already validated
                 let outputJSON = newPurchase.toJSON()
                 
-                JSONClient.post("http://Deanna.local:8080/purchases", body: outputJSON)
+                JSONClient.post("https://mt2d2.net/purchases", body: outputJSON)
             }
         }
     }
