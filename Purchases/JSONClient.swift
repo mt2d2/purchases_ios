@@ -11,6 +11,15 @@ import UIKit
 class JSONClient {
     class func basicRequest(url: String, method: String, body: String, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        
+        let username = "test"
+        let password = "test"
+        let loginString = NSString(format: "%@:%@", username, password)
+        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64LoginString = loginData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
+        
         request.HTTPMethod = method
         request.HTTPBody = (body as NSString).dataUsingEncoding(NSUTF8StringEncoding)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
