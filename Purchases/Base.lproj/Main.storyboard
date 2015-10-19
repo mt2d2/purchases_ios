@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ehY-wf-dFA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B38b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ehY-wf-dFA">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,15 +20,18 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of purchase…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1w3-MU-SvG">
                                 <rect key="frame" x="20" y="84" width="560" height="30"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cost…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m32-Cf-Lf0">
                                 <rect key="frame" x="20" y="122" width="560" height="30"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="m32-Cf-Lf0" secondAttribute="leading" id="3EA-fI-7IY"/>
@@ -65,10 +68,11 @@
         <!--Purchases-->
         <scene sceneID="yIZ-5Y-fKG">
             <objects>
-                <tableViewController id="Red-5N-cMC" customClass="PurchaseListTableViewController" customModule="Purchases" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PurchasesScene" id="Red-5N-cMC" customClass="PurchaseListTableViewController" customModule="Purchases" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" id="zKJ-hf-K9Q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="35M-Wm-h2C">
                             <rect key="frame" x="0.0" y="64" width="600" height="64"/>
@@ -76,10 +80,12 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Poq-rh-S4g">
                                     <rect key="frame" x="8" y="21" width="600" height="23"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <animations/>
                             <constraints>
                                 <constraint firstItem="Poq-rh-S4g" firstAttribute="leading" secondItem="35M-Wm-h2C" secondAttribute="leading" constant="8" id="7Xg-Jc-BNw"/>
                                 <constraint firstItem="Poq-rh-S4g" firstAttribute="centerY" secondItem="35M-Wm-h2C" secondAttribute="centerY" id="GyN-qU-feH"/>
@@ -91,28 +97,32 @@
                                 <rect key="frame" x="0.0" y="150" width="600" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v7f-JP-9m2" id="mxc-2Y-pgX">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a test" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="48U-YQ-Vf4">
                                             <rect key="frame" x="8" y="8" width="97" height="21"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$100.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-lI-KKe">
                                             <rect key="frame" x="525" y="8" width="67" height="21"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December 7, 1988" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnD-hL-MYr">
                                             <rect key="frame" x="8" y="29" width="109" height="23"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="48U-YQ-Vf4" firstAttribute="leading" secondItem="mxc-2Y-pgX" secondAttribute="leadingMargin" id="3DZ-a0-BJ2"/>
                                         <constraint firstItem="rlP-lI-KKe" firstAttribute="baseline" secondItem="48U-YQ-Vf4" secondAttribute="baseline" id="4j1-40-hx6"/>
@@ -128,6 +138,7 @@
                                         <constraint firstItem="rlP-lI-KKe" firstAttribute="top" secondItem="mxc-2Y-pgX" secondAttribute="topMargin" id="wQF-2Y-d6w"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                                 <connections>
                                     <outlet property="costLabel" destination="rlP-lI-KKe" id="u0V-BK-gFw"/>
                                     <outlet property="nameLabel" destination="48U-YQ-Vf4" id="qfv-oT-FxK"/>
@@ -144,7 +155,7 @@
                     <navigationItem key="navigationItem" title="Purchases" id="LN4-VP-q91">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="T7i-eM-uSt">
                             <connections>
-                                <segue destination="2TY-mL-54A" kind="presentation" id="X8g-S2-JLo"/>
+                                <segue destination="2TY-mL-54A" kind="presentation" identifier="AddPurchaseSegue" id="X8g-S2-JLo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -160,11 +171,12 @@
         <!--Navigation Controller-->
         <scene sceneID="ZzV-nn-KdA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ehY-wf-dFA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationScene" automaticallyAdjustsScrollViewInsets="NO" id="ehY-wf-dFA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nQW-bK-0vM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -178,18 +190,19 @@
         <!--Navigation Controller-->
         <scene sceneID="5cs-KC-6Qn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dea-UE-AGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2TY-mL-54A" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bGI-nA-0yA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Un9-Cn-3TN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dea-UE-AGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2439" y="481"/>
         </scene>

@@ -12,10 +12,34 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    @available(iOS 9.0, *)
+    func handleShortcut(shortcutItem:UIApplicationShortcutItem) -> Bool {
+        if (shortcutItem.type == "AddPurchase") {
+            let navVC = window!.rootViewController as? UINavigationController
+            let purchasesVC = navVC?.viewControllers.first as UIViewController?
+            
+            navVC?.popToRootViewControllerAnimated(false)
+            purchasesVC?.performSegueWithIdentifier("AddPurchaseSegue", sender: nil)
+            return true
+        }
+        
+        return false
+    }
 
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        completionHandler(handleShortcut(shortcutItem))
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        if #available(iOS 9.0, *) {
+            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                    self.window?.makeKeyAndVisible()
+                    return handleShortcut(shortcutItem)
+            }
+        }
         return true
     }
 
