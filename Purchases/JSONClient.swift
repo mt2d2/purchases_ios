@@ -14,8 +14,8 @@ class JSONClient {
         
         let username = "test"
         let password = "test"
-        let loginString = NSString(format: "%@:%@", username, password)
-        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
         let base64LoginString = loginData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
 
@@ -25,7 +25,12 @@ class JSONClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: completionHandler).resume()
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
     }
     
     class func post(url: String, body: String) {
