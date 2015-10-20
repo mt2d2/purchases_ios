@@ -8,23 +8,39 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    enum Shortcut: String {
+        case AddPurchase
+        
+        init?(identifier: String) {
+            self.init(rawValue: identifier)
+        }
+    }
+    
     @available(iOS 9.0, *)
-    func handleShortcut(shortcutItem:UIApplicationShortcutItem) -> Bool {
-        if (shortcutItem.type == "AddPurchase") {
-            let navVC = window!.rootViewController as? UINavigationController
-            let purchasesVC = navVC?.viewControllers.first as UIViewController?
-            
-            navVC?.popToRootViewControllerAnimated(false)
-            purchasesVC?.performSegueWithIdentifier("AddPurchaseSegue", sender: nil)
-            return true
+    func handleShortcut(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        guard let shortcut = Shortcut(identifier: shortcutItem.type) else {
+            return false
         }
         
-        return false
+        switch shortcut {
+        case .AddPurchase:
+            guard let navVC = window!.rootViewController as? UINavigationController else {
+                return false
+            }
+            guard let purchasesVC = navVC.viewControllers.first as UIViewController? else {
+                return false
+            }
+            
+            navVC.popToRootViewControllerAnimated(false)
+            purchasesVC.performSegueWithIdentifier("AddPurchaseSegue", sender: nil)
+            return true
+        }
     }
 
     @available(iOS 9.0, *)
