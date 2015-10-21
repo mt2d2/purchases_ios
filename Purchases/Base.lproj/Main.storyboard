@@ -17,14 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cost…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m32-Cf-Lf0">
-                                <rect key="frame" x="20" y="122" width="560" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHf-DL-dPv">
+                                <rect key="frame" x="20" y="72" width="45" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ReX-p4-iMh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="The damage…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m32-Cf-Lf0">
+                                <rect key="frame" x="20" y="168" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of purchase…" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1w3-MU-SvG">
-                                <rect key="frame" x="20" y="84" width="560" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lt4-K0-pYC">
+                                <rect key="frame" x="20" y="139" width="36" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="wN9-TU-NmI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Something to remember it by…" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1w3-MU-SvG">
+                                <rect key="frame" x="20" y="101" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -33,12 +53,16 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="m32-Cf-Lf0" secondAttribute="leading" id="3EA-fI-7IY"/>
-                            <constraint firstItem="1w3-MU-SvG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="F5o-M9-h0g"/>
-                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G3u-Uz-tIp"/>
-                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="top" secondItem="1w3-MU-SvG" secondAttribute="bottom" constant="8" symbolic="YES" id="RsZ-Yw-xd5"/>
-                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="oAG-Io-mld"/>
-                            <constraint firstItem="1w3-MU-SvG" firstAttribute="trailing" secondItem="m32-Cf-Lf0" secondAttribute="trailing" id="wYO-OM-zka"/>
+                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="leading" secondItem="Lt4-K0-pYC" secondAttribute="leading" id="6TO-Gp-rxf"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="trailing" secondItem="m32-Cf-Lf0" secondAttribute="trailing" id="Edl-Un-1Z3"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Llv-mO-bmx"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QfZ-dr-9Gx"/>
+                            <constraint firstItem="m32-Cf-Lf0" firstAttribute="top" secondItem="Lt4-K0-pYC" secondAttribute="bottom" constant="8" symbolic="YES" id="Y5T-Pc-7ll"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="leading" secondItem="nHf-DL-dPv" secondAttribute="leading" id="YDH-RJ-yHb"/>
+                            <constraint firstItem="1w3-MU-SvG" firstAttribute="top" secondItem="nHf-DL-dPv" secondAttribute="bottom" constant="8" symbolic="YES" id="ciE-kR-ULu"/>
+                            <constraint firstItem="nHf-DL-dPv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="eog-dN-y04"/>
+                            <constraint firstItem="Lt4-K0-pYC" firstAttribute="leading" secondItem="1w3-MU-SvG" secondAttribute="leading" id="hLE-YY-O0p"/>
+                            <constraint firstItem="Lt4-K0-pYC" firstAttribute="top" secondItem="1w3-MU-SvG" secondAttribute="bottom" constant="8" symbolic="YES" id="uXT-Wf-q76"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Purchase" id="8ag-HP-cmu">
