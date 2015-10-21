@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    @available(iOS 9.0, *)
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) -> Bool {
         guard let shortcut = Shortcut(identifier: shortcutItem.type) else {
             return false
@@ -48,11 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if #available(iOS 9.0, *) {
-            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-                    self.window?.makeKeyAndVisible()
-                    return handleShortcut(shortcutItem)
-            }
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                self.window?.makeKeyAndVisible()
+                return handleShortcut(shortcutItem)
         }
         return true
     }
