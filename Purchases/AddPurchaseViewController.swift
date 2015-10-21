@@ -65,7 +65,9 @@ class AddPurchaseViewController: UIViewController {
                 }
                 
                 if self.convertCostTestField() == nil {
-                    UIAlertView(title: "Bad entries", message: "We need a valid, numeric cost.", delegate: nil, cancelButtonTitle: "Ok").show()
+                    let alertController = UIAlertController(title: "Invalid cost", message: "The cost must be a numeric dollar amount.", preferredStyle: .Alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
                     return false
                 }
             }
