@@ -85,7 +85,6 @@ class PurchaseListTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        self.purchases.removeAll()
     }
 
     // MARK: - Table view data source
