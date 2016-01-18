@@ -34,15 +34,14 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func presentData() {
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-            
+        self.tableView.reloadData()
+
+        dispatch_async(dispatch_get_main_queue(), {            
             UIView.animateWithDuration(0.4, animations: {
                 self.totalView?.backgroundColor = self.colorForTotalCost()
                 self.totalLabel?.text = "Total: $\(self.costTotal())"
             })
         })
-
     }
     
     func colorForTotalCost() -> UIColor {
