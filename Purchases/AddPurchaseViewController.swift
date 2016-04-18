@@ -19,7 +19,7 @@ class AddPurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         self.nameField.becomeFirstResponder()
-        self.nameField.addTarget(self.costField, action: "becomeFirstResponder", forControlEvents: UIControlEvents.EditingDidEndOnExit)
+        self.nameField.addTarget(self.costField, action: #selector(UIResponder.becomeFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
     }
 
     override func didReceiveMemoryWarning() {
