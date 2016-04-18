@@ -70,7 +70,7 @@ class PurchaseListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         self.presentBlank()
         self.loadInitialData()
