@@ -16,7 +16,6 @@ class PurchaseListTableViewController: UITableViewController {
     var purchases = [Purchase]()
     
     @IBAction func unwindToPurchaseList(segue: UIStoryboardSegue) {
-        self.loadInitialData()
     }
     
     func costTotal() -> Double {
@@ -26,6 +25,7 @@ class PurchaseListTableViewController: UITableViewController {
     func refresh(sender: AnyObject) {
         self.loadInitialData()
         self.refreshControl!.endRefreshing()
+        self.presentData()
     }
     
     func presentBlank() {
@@ -73,13 +73,19 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         self.presentBlank()
-        self.loadInitialData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadInitialData()
+        self.presentData()
     }
 
     override func didReceiveMemoryWarning() {
