@@ -9,22 +9,31 @@
 import Foundation
 import UIKit
 
-class AddPurchaseViewController: UIViewController {
+class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
    
-    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var nameField: AutocompleteField!
     @IBOutlet weak var costField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    var purchaseStrings = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.nameField.becomeFirstResponder()
-        self.nameField.addTarget(self.costField, action: #selector(UIResponder.becomeFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
+//        self.nameField.addTarget(self.costField, action: #selector(UIResponder.becomeFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
+        
+        nameField.delegate = self
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        nameField.suggestions = purchaseStrings
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        purchaseStrings.removeAll()
     }
     
     func convertCostTestField() -> Double? {
@@ -92,5 +101,18 @@ class AddPurchaseViewController: UIViewController {
             }
         }
     }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
 
+        if let field = textField as? AutocompleteField {
+            if field.suggestion?.characters.count > 0 {
+                field.text = field.suggestion
+            }
+            costField.becomeFirstResponder()
+        }
+        
+        return true
+    }
 }

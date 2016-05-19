@@ -10,6 +10,7 @@
 		1E74FCFC1B2FD2E200A22176 /* JSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */; };
 		1E74FCFE1B312F5900A22176 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E74FCFD1B312F5900A22176 /* Settings.bundle */; };
 		1E74FD021B313BE600A22176 /* licenses in Resources */ = {isa = PBXBuildFile; fileRef = 1E74FD011B313BE600A22176 /* licenses */; };
+		1E79E1F41CED93E000DE1741 /* AutocompleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79E1F31CED93E000DE1741 /* AutocompleteField.swift */; };
 		1E99D57A1B2A8E91003280EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D5791B2A8E91003280EA /* AppDelegate.swift */; };
 		1E99D57F1B2A8E91003280EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D57D1B2A8E91003280EA /* Main.storyboard */; };
 		1E99D5811B2A8E91003280EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E99D5801B2A8E91003280EA /* Images.xcassets */; };
@@ -36,6 +37,7 @@
 		1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONClient.swift; sourceTree = "<group>"; };
 		1E74FCFD1B312F5900A22176 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1E74FD011B313BE600A22176 /* licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = licenses; sourceTree = "<group>"; };
+		1E79E1F31CED93E000DE1741 /* AutocompleteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteField.swift; sourceTree = "<group>"; };
 		1E99D5741B2A8E91003280EA /* Purchases.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Purchases.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E99D5781B2A8E91003280EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E99D5791B2A8E91003280EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				1E99D5A51B2BB998003280EA /* JSONHelper.swift */,
 				1E74FCFB1B2FD2E200A22176 /* JSONClient.swift */,
 				1E74FCFD1B312F5900A22176 /* Settings.bundle */,
+				1E79E1F31CED93E000DE1741 /* AutocompleteField.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E79E1F41CED93E000DE1741 /* AutocompleteField.swift in Sources */,
 				1E99D5A21B2A9E20003280EA /* Purchases.swift in Sources */,
 				1E99D59C1B2A9A59003280EA /* PurchaseListTableViewController.swift in Sources */,
 				1E74FCFC1B2FD2E200A22176 /* JSONClient.swift in Sources */,
