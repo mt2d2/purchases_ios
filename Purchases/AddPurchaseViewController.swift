@@ -28,13 +28,17 @@ class AddPurchaseViewController: UIViewController {
     }
     
     func convertCostTestField() -> Double? {
-        if let cost = self.costField?.text {
-            let ret = strtod(cost, nil)
-            // if parsing fails, return an empty optional double
-            return ret == 0 ? nil : ret
+        guard let cost = self.costField?.text else {
+            return nil
         }
         
-        return nil
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle        
+        guard let ret = formatter.numberFromString(cost)?.doubleValue else {
+            return nil
+        }
+        
+        return ret
     }
     
     func shake(field: UITextField) {
