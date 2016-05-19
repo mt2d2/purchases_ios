@@ -150,8 +150,10 @@ public enum AutocompleteType {
      Set content of the suggestion label.
      - parameter text: Suggestion text
      */
-    private func setLabelContent(var text : String = "")
+    private func setLabelContent(inputText : String = "")
     {
+        var text = inputText
+        
         // label string
         if(text.characters.count < 1) {
             label.attributedText = nil
@@ -159,13 +161,12 @@ public enum AutocompleteType {
         }
         
         // only return first word if in word mode
-        if(self.autocompleteType == .Word)
-        {
+        if self.autocompleteType == .Word {
             let words = self.text!.componentsSeparatedByString(" ")
             let suggestionWords = text.componentsSeparatedByString(" ")
             var string : String = ""
-            for(var i = 0; i < words.count; i++)
-            {
+            
+            for i in 0 ..< words.count {
                 string = string.stringByAppendingString(suggestionWords[i]) + " "
             }
             text = string
@@ -216,7 +217,7 @@ public enum AutocompleteType {
                 suggestion.lowercaseString.hasPrefix(searchTerm.lowercaseString))
             {
                 var suggestionToReturn = searchTerm
-                suggestionToReturn = suggestionToReturn + suggestion.substringWithRange(Range<String.Index>(start: suggestion.startIndex.advancedBy(searchTerm.characters.count), end: suggestion.endIndex))
+                suggestionToReturn = suggestionToReturn + suggestion.substringWithRange(suggestion.startIndex.advancedBy(searchTerm.characters.count) ..< suggestion.endIndex)
                 
                 returnString = suggestionToReturn
                 break
