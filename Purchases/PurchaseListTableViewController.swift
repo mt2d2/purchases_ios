@@ -73,19 +73,12 @@ class PurchaseListTableViewController: UITableViewController {
         self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         self.presentBlank()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.loadInitialData()
-        self.presentData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,7 +116,6 @@ class PurchaseListTableViewController: UITableViewController {
         return true
     }
     
-    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -139,22 +131,6 @@ class PurchaseListTableViewController: UITableViewController {
         }
     }
     
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let nav = segue.destinationViewController as? UINavigationController {
             if let dest = nav.viewControllers[0] as? AddPurchaseViewController {
