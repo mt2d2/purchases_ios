@@ -134,6 +134,10 @@ class PurchaseListTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let nav = segue.destinationViewController as? UINavigationController {
             if let dest = nav.viewControllers[0] as? AddPurchaseViewController {
+                if purchases.isEmpty {
+                    NSLog("purchases was empty before segue")
+                }
+                
                 dest.purchaseStrings = purchases.map { $0.name }
             }
         }
