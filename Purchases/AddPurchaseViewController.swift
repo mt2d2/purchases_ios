@@ -21,8 +21,6 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.nameField.becomeFirstResponder()
-//        self.nameField.addTarget(self.costField, action: #selector(UIResponder.becomeFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
-        
         nameField.delegate = self
     }
 
