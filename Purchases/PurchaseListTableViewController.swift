@@ -10,6 +10,8 @@ import UIKit
 
 class PurchaseListTableViewController: UITableViewController {
     
+    static let PurchaseStringsKey = "PurchaseStrings"
+    
     @IBOutlet weak var totalView: UIView!
     @IBOutlet weak var totalLabel: UILabel!
     
@@ -68,6 +70,14 @@ class PurchaseListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: nil) { notification in
+            let strings = self.purchaseStrings()
+            if !strings.isEmpty {
+                NSLog("Saving purchase strings")
+                NSUserDefaults.standardUserDefaults().setObject(strings, forKey: PurchaseListTableViewController.PurchaseStringsKey)
+            }
+        }
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -131,14 +141,22 @@ class PurchaseListTableViewController: UITableViewController {
         }
     }
     
+    func purchaseStrings() -> [String] {
+        return purchases.map { $0.name }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let nav = segue.destinationViewController as? UINavigationController {
             if let dest = nav.viewControllers[0] as? AddPurchaseViewController {
-                if purchases.isEmpty {
-                    NSLog("purchases was empty before segue")
+                let strings = purchaseStrings()
+                if !strings.isEmpty {
+                    dest.purchaseStrings = purchaseStrings()
+                } else {
+                    if let strings = NSUserDefaults.standardUserDefaults().arrayForKey(PurchaseListTableViewController.PurchaseStringsKey) as? [String] {
+                        NSLog("Overriding purchase strings from NSUserDefaults")
+                        dest.purchaseStrings = strings
+                    }
                 }
-                
-                dest.purchaseStrings = purchases.map { $0.name }
             }
         }
     }
