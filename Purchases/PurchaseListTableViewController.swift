@@ -161,6 +161,5 @@ class PurchaseListTableViewController: UITableViewController {
                 dest.purchaseStrings = purchases.map { $0.name }
             }
         }
-        
     }
 }
