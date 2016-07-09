@@ -36,9 +36,8 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func presentData() {
-        self.tableView.reloadData()
-
         DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
             UIView.animate(withDuration: 0.4, animations: {
                 self.totalView?.backgroundColor = self.colorForTotalCost()
                 self.totalLabel?.text = "Total: $\(self.costTotal())"
