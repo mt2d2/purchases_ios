@@ -40,7 +40,7 @@ class PurchaseListTableViewController: UITableViewController {
             self.tableView.reloadData()
             UIView.animate(withDuration: 0.4, animations: {
                 self.totalView?.backgroundColor = self.colorForTotalCost()
-                self.totalLabel?.text = "Total: $\(self.costTotal())"
+                self.totalLabel?.text = String(format: "Total: $%.2f", self.costTotal())
             })
         })
     }
