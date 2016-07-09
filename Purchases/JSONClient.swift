@@ -26,9 +26,9 @@ class JSONClient {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         UIApplication.shared().isNetworkActivityIndicatorVisible = true
-        
-        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
         // disabled in callback when executed
+
+        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
     }
     
     class func post(_ url: String, body: String) {
