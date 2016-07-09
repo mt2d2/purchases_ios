@@ -1,5 +1,5 @@
 //
-//  URLFetcher.swift
+//  JSONClient.swift
 //  Purchases
 //
 //  Created by Michael Tremel on 6/15/15.
@@ -26,11 +26,9 @@ class JSONClient {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         UIApplication.shared().isNetworkActivityIndicatorVisible = true
-
-        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
         
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
-
+        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
+        // disabled in callback when executed
     }
     
     class func post(_ url: String, body: String) {
@@ -40,6 +38,8 @@ class JSONClient {
     class func get(_ url: String, callback: ((AnyObject) -> Void)) {
         basicRequest(url, method: "GET", body: "") { (data, response, error) in
             do {
+                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                
                 if let json = data {
                     let parsed = try JSONSerialization.jsonObject(with: json, options: JSONSerialization.ReadingOptions.allowFragments)
                     callback(parsed)
