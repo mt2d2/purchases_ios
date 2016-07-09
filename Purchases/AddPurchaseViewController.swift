@@ -24,7 +24,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
         nameField.delegate = self
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nameField.suggestions = purchaseStrings
     }
@@ -39,30 +39,30 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
             return nil
         }
         
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle        
-        guard let ret = formatter.numberFromString(cost)?.doubleValue else {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal        
+        guard let ret = formatter.number(from: cost)?.doubleValue else {
             return nil
         }
         
         return ret
     }
     
-    func shake(field: UITextField) {
+    func shake(_ field: UITextField) {
         // http://stackoverflow.com/questions/1632364/shake-visual-effect-on-iphone-not-shaking-the-device
         let anim = CAKeyframeAnimation( keyPath:"transform" )
         anim.values = [
-            NSValue( CATransform3D:CATransform3DMakeTranslation(-6, 0, 0 ) ),
-            NSValue( CATransform3D:CATransform3DMakeTranslation( 6, 0, 0 ) )
+            NSValue( caTransform3D:CATransform3DMakeTranslation(-6, 0, 0 ) ),
+            NSValue( caTransform3D:CATransform3DMakeTranslation( 6, 0, 0 ) )
         ]
         anim.autoreverses = true
         anim.repeatCount = 2
         anim.duration = 7/100
         
-        field.layer.addAnimation(anim, forKey: nil)
+        field.layer.add(anim, forKey: nil)
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: AnyObject?) -> Bool {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
                 if self.nameField.text!.isEmpty {
@@ -76,9 +76,9 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 if self.convertCostTestField() == nil {
-                    let alertController = UIAlertController(title: "Invalid cost", message: "The cost must be a numeric dollar amount.", preferredStyle: .Alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    let alertController = UIAlertController(title: "Invalid cost", message: "The cost must be a numeric dollar amount.", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
                     return false
                 }
             }
@@ -88,7 +88,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
                 // no validation here, done in shouldPerformSegueWithIdentifier
@@ -101,7 +101,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 
         if let field = textField as? AutocompleteField {

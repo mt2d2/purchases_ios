@@ -12,13 +12,13 @@ struct Purchase: Deserializable {
     var id = 0
     var name = ""
     var cost = 0.0
-    var timeBought = NSDate()
+    var timeBought = Date()
     
     init(data: [String: AnyObject]) {
-        self.id <-- data["id"]
-        self.name <-- data["name"]
-        self.timeBought <-- (data["time_bought"], "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZ") // 2015-06-11T17:24:44.153108381-07:00
-        self.cost <-- data["cost"]
+        let _ = self.id <-- data["id"]
+        let _ = self.name <-- data["name"]
+        let _ = self.timeBought <-- data["time_bought"] //, "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZ") // 2015-06-11T17:24:44.153108381-07:00
+        let _ = self.cost <-- data["cost"]
     }
     
     init(fromName: String, fromCost: Double) {

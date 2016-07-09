@@ -17,14 +17,14 @@ class PurchaseListTableViewController: UITableViewController {
     
     var purchases = [Purchase]()
     
-    @IBAction func unwindToPurchaseList(segue: UIStoryboardSegue) {
+    @IBAction func unwindToPurchaseList(_ segue: UIStoryboardSegue) {
     }
     
     func costTotal() -> Double {
         return self.purchases.reduce(0, combine: {$0 + $1.cost})
     }
     
-    func refresh(sender: AnyObject) {
+    func refresh(_ sender: AnyObject) {
         self.loadInitialData()
         self.refreshControl!.endRefreshing()
         self.presentData()
@@ -38,8 +38,8 @@ class PurchaseListTableViewController: UITableViewController {
     func presentData() {
         self.tableView.reloadData()
 
-        dispatch_async(dispatch_get_main_queue(), {            
-            UIView.animateWithDuration(0.4, animations: {
+        DispatchQueue.main.async(execute: {
+            UIView.animate(withDuration: 0.4, animations: {
                 self.totalView?.backgroundColor = self.colorForTotalCost()
                 self.totalLabel?.text = "Total: $\(self.costTotal())"
             })
@@ -63,7 +63,7 @@ class PurchaseListTableViewController: UITableViewController {
     
     func loadInitialData() {
         JSONClient.get("https://mt2d2.net/purchases") {(json) in
-            self.purchases <-- json
+            let _ = self.purchases <-- json
             self.presentData()
         }
     }
@@ -71,21 +71,21 @@ class PurchaseListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: nil) { notification in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil) { notification in
             let strings = self.purchaseStrings()
             if !strings.isEmpty {
                 NSLog("Saving purchase strings")
-                NSUserDefaults.standardUserDefaults().setObject(strings, forKey: PurchaseListTableViewController.PurchaseStringsKey)
+                UserDefaults.standard.set(strings, forKey: PurchaseListTableViewController.PurchaseStringsKey)
             }
         }
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh), for: UIControlEvents.valueChanged)
         
         self.presentBlank()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.loadInitialData()
@@ -97,23 +97,23 @@ class PurchaseListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.purchases.count
     }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ListPrototypeCell", forIndexPath: indexPath) as! PurchaseTableViewCell
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListPrototypeCell", for: indexPath as IndexPath) as! PurchaseTableViewCell
         let purchase = self.purchases[indexPath.row]
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
         dateFormatter.doesRelativeDateFormatting = true
-        let dateString = dateFormatter.stringFromDate(purchase.timeBought)
+        let dateString = dateFormatter.string(from: purchase.timeBought as Date)
 
         cell.nameLabel.text = purchase.name
         cell.costLabel.text = String(format: "$%.2f", purchase.cost)
@@ -122,21 +122,20 @@ class PurchaseListTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            let removedPurchase = self.purchases.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            let removedPurchase = self.purchases.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
             self.presentData()
             
             JSONClient.delete("https://mt2d2.net/purchases/\(removedPurchase.id)")
 
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             return // unsupported
         }
     }
@@ -145,14 +144,14 @@ class PurchaseListTableViewController: UITableViewController {
         return purchases.map { $0.name }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let nav = segue.destinationViewController as? UINavigationController {
             if let dest = nav.viewControllers[0] as? AddPurchaseViewController {
                 let strings = purchaseStrings()
                 if !strings.isEmpty {
                     dest.purchaseStrings = purchaseStrings()
                 } else {
-                    if let strings = NSUserDefaults.standardUserDefaults().arrayForKey(PurchaseListTableViewController.PurchaseStringsKey) as? [String] {
+                    if let strings = UserDefaults.standard.array(forKey: PurchaseListTableViewController.PurchaseStringsKey) as? [String] {
                         NSLog("Overriding purchase strings from NSUserDefaults")
                         dest.purchaseStrings = strings
                     }

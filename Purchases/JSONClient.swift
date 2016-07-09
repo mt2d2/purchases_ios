@@ -9,46 +9,46 @@
 import UIKit
 
 class JSONClient {
-    class func basicRequest(url: String, method: String, body: String, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    class func basicRequest(_ url: String, method: String, body: String, completionHandler: (Data?, URLResponse?, NSError?) -> Void) {
+        var request = URLRequest(url: URL(string: url)!)
         
         let username = "test"
         let password = "test"
         let loginString = String(format: "%@:%@", username, password)
-        let loginData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64LoginString = loginData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString(options: .lineLength64Characters)
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
 
         
-        request.HTTPMethod = method
-        request.HTTPBody = (body as NSString).dataUsingEncoding(NSUTF8StringEncoding)
+        request.httpMethod = method
+        request.httpBody = (body as NSString).data(using: String.Encoding.utf8.rawValue)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared().isNetworkActivityIndicatorVisible = true
 
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: completionHandler).resume()
+        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
 
     }
     
-    class func post(url: String, body: String) {
+    class func post(_ url: String, body: String) {
         basicRequest(url, method: "POST", body: body, completionHandler: {(_, _, _) in })
     }
     
-    class func get(url: String, callback: ((AnyObject) -> Void)) {
+    class func get(_ url: String, callback: ((AnyObject) -> Void)) {
         basicRequest(url, method: "GET", body: "") { (data, response, error) in
             do {
                 if let json = data {
-                    let parsed = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments)
+                    let parsed = try JSONSerialization.jsonObject(with: json, options: JSONSerialization.ReadingOptions.allowFragments)
                     callback(parsed)
                 }
             } catch _ { }
         }
     }
     
-    class func delete(url: String) {
+    class func delete(_ url: String) {
         basicRequest(url, method: "DELETE", body: "", completionHandler: {(_, _, _) in })
     }
 }

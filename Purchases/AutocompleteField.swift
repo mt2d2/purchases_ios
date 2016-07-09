@@ -11,8 +11,8 @@ import UIKit
 
 
 public enum AutocompleteType {
-    case Word
-    case Sentence
+    case word
+    case sentence
 }
 
 
@@ -51,7 +51,7 @@ public enum AutocompleteType {
     }
     
     // The type of autocomplete that should be used
-    public var autocompleteType : AutocompleteType = .Word
+    public var autocompleteType : AutocompleteType = .word
     
     
     // MARK: - private properties
@@ -97,7 +97,7 @@ public enum AutocompleteType {
     // ovverride to set frame of the suggestion label whenever the textfield frame changes.
     public override func layoutSubviews()
     {
-        self.label.frame = CGRectMake(self.padding, self.pixelCorrection, self.frame.width - (self.padding * 2), self.frame.height)
+        self.label.frame = CGRect(x: self.padding, y: self.pixelCorrection, width: self.frame.width - (self.padding * 2), height: self.frame.height)
         super.layoutSubviews()
     }
     
@@ -115,10 +115,10 @@ public enum AutocompleteType {
      */
     private func createNotification()
     {
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(AutocompleteField.textChanged(_:)),
-            name: UITextFieldTextDidChangeNotification,
+            name: NSNotification.Name.UITextFieldTextDidChange,
             object: self)
     }
     
@@ -129,13 +129,13 @@ public enum AutocompleteType {
     {
         setLabelContent()
         
-        self.label.lineBreakMode = .ByClipping
+        self.label.lineBreakMode = .byClipping
         
         // If the textfield has one of the default styles, we need to create some padding
         // otherwise there will be a offset in x-led.
         switch self.borderStyle
         {
-        case .RoundedRect, .Bezel, .Line:
+        case .roundedRect, .bezel, .line:
             self.padding = 8
             break;
         default:
@@ -150,7 +150,7 @@ public enum AutocompleteType {
      Set content of the suggestion label.
      - parameter text: Suggestion text
      */
-    private func setLabelContent(inputText : String = "")
+    private func setLabelContent(_ inputText : String = "")
     {
         var text = inputText
         
@@ -161,13 +161,13 @@ public enum AutocompleteType {
         }
         
         // only return first word if in word mode
-        if self.autocompleteType == .Word {
-            let words = self.text!.componentsSeparatedByString(" ")
-            let suggestionWords = text.componentsSeparatedByString(" ")
+        if self.autocompleteType == .word {
+            let words = self.text!.components(separatedBy: " ")
+            let suggestionWords = text.components(separatedBy: " ")
             var string : String = ""
             
             for i in 0 ..< words.count {
-                string = string.stringByAppendingString(suggestionWords[i]) + " "
+                string = string + suggestionWords[i] + " "
             }
             text = string
         }
@@ -191,7 +191,7 @@ public enum AutocompleteType {
         if let inputText = self.text
         {
             attributedString.addAttribute(NSForegroundColorAttributeName,
-                                          value: UIColor.clearColor(),
+                                          value: UIColor.clear(),
                                           range: NSRange(location:0, length:inputText.characters.count)
             )
         }
@@ -206,7 +206,7 @@ public enum AutocompleteType {
      - parameter searchTerm: What to search for
      - returns A string or nil
      */
-    private func suggestionToShow(searchTerm : String) -> String
+    private func suggestionToShow(_ searchTerm : String) -> String
     {
         var returnString = ""
         for suggestion in self.suggestions
@@ -214,10 +214,10 @@ public enum AutocompleteType {
             // Search the suggestion array. User lowercase on both to get a match.
             // Also, if the match is exact we move on.
             if( (suggestion != searchTerm) &&
-                suggestion.lowercaseString.hasPrefix(searchTerm.lowercaseString))
+                suggestion.lowercased().hasPrefix(searchTerm.lowercased()))
             {
                 var suggestionToReturn = searchTerm
-                suggestionToReturn = suggestionToReturn + suggestion.substringWithRange(suggestion.startIndex.advancedBy(searchTerm.characters.count) ..< suggestion.endIndex)
+                suggestionToReturn = suggestionToReturn + suggestion.substring(with: suggestion.characters.index(suggestion.startIndex, offsetBy: searchTerm.characters.count) ..< suggestion.endIndex)
                 
                 returnString = suggestionToReturn
                 break
@@ -234,7 +234,7 @@ public enum AutocompleteType {
      Triggered whenever the field text changes.
      - parameter notification: The NSNotifcation attached to the event
      */
-    func textChanged(notification: NSNotification)
+    func textChanged(_ notification: Notification)
     {
         if let text = self.text
         {
@@ -244,26 +244,26 @@ public enum AutocompleteType {
     }
     
     // ovverride to set padding
-    public override func textRectForBounds(bounds: CGRect) -> CGRect
+    public override func textRect(forBounds bounds: CGRect) -> CGRect
     {
-        return CGRectMake(bounds.origin.x + self.padding, bounds.origin.y,
-                          bounds.size.width - (self.padding * 2), bounds.size.height);
+        return CGRect(x: bounds.origin.x + self.padding, y: bounds.origin.y,
+                          width: bounds.size.width - (self.padding * 2), height: bounds.size.height);
     }
     
     // ovverride to set padding
-    public override func editingRectForBounds(bounds: CGRect) -> CGRect
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect
     {
-        return self.textRectForBounds(bounds)
+        return self.textRect(forBounds: bounds)
     }
     
     // ovverride to set padding on placeholder
-    public override func placeholderRectForBounds(bounds: CGRect) -> CGRect
+    public override func placeholderRect(forBounds bounds: CGRect) -> CGRect
     {
-        return self.textRectForBounds(bounds)
+        return self.textRect(forBounds: bounds)
     }
     
     // remove observer on deinit
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }

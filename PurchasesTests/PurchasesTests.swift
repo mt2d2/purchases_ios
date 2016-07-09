@@ -22,7 +22,7 @@ class PurchasesTests: XCTestCase {
         let str = "[{\"id\":2,\"name\":\"Zest\",\"cost\":85,\"time_bought\":\"2015-06-14T23:14:48.654224843-07:00\"},{\"id\":1,\"name\":\"added via post 4\",\"cost\":29.32,\"time_bought\":\"2015-06-14T23:01:36.957803279-07:00\"}]"
         
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(str.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.AllowFragments)
+            let json = try JSONSerialization.jsonObject(with: str.data(using: String.Encoding.utf8)!, options: JSONSerialization.ReadingOptions.allowFragments)
             purchases <-- json
         } catch _ {
             XCTFail()
