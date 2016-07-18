@@ -9,6 +9,8 @@
 import UIKit
 
 class JSONClient {
+    static let JSONActivityNotification = NSNotification.Name("net.mt2d2.Purchases.JSONActivityNotifcation")
+    
     class func basicRequest(_ url: String, method: String, body: String, completionHandler: (Data?, URLResponse?, NSError?) -> Void) {
         var request = URLRequest(url: URL(string: url)!)
         
@@ -32,7 +34,9 @@ class JSONClient {
     }
     
     class func post(_ url: String, body: String) {
-        basicRequest(url, method: "POST", body: body, completionHandler: {(_, _, _) in })
+        basicRequest(url, method: "POST", body: body, completionHandler: {(_, _, _) in
+            NotificationCenter.default.post(name: JSONActivityNotification, object: nil)
+        })
     }
     
     class func get(_ url: String, callback: ((AnyObject) -> Void)) {
@@ -49,6 +53,8 @@ class JSONClient {
     }
     
     class func delete(_ url: String) {
-        basicRequest(url, method: "DELETE", body: "", completionHandler: {(_, _, _) in })
+        basicRequest(url, method: "DELETE", body: "", completionHandler: {(_, _, _) in
+            NotificationCenter.default.post(name: JSONActivityNotification, object: nil)
+        })
     }
 }

@@ -17,6 +17,35 @@ class PurchaseListTableViewController: UITableViewController {
     
     var purchases = [Purchase]()
     
+    var backgroundObserver: NSObjectProtocol?
+    var jsonObserver: NSObjectProtocol?
+    
+    
+    required init?(coder decoder: NSCoder) {
+        super.init(coder: decoder)
+        
+        backgroundObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil) { notification in
+            let strings = self.purchaseStrings()
+            if !strings.isEmpty {
+                NSLog("Saving purchase strings")
+                UserDefaults.standard.set(strings, forKey: PurchaseListTableViewController.PurchaseStringsKey)
+            }
+        }
+        jsonObserver = NotificationCenter.default.addObserver(forName: JSONClient.JSONActivityNotification, object: nil, queue: nil, using: {
+            notification in
+            NSLog("Processing JSON refresh")
+            self.loadInitialData()
+        })
+    }
+    
+    deinit {
+        for observer in [backgroundObserver, jsonObserver] {
+            if let observer = observer {
+                NotificationCenter.default.removeObserver(observer)
+            }
+        }
+    }
+    
     @IBAction func unwindToPurchaseList(_ segue: UIStoryboardSegue) {
     }
     
@@ -69,15 +98,7 @@ class PurchaseListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil) { notification in
-            let strings = self.purchaseStrings()
-            if !strings.isEmpty {
-                NSLog("Saving purchase strings")
-                UserDefaults.standard.set(strings, forKey: PurchaseListTableViewController.PurchaseStringsKey)
-            }
-        }
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(PurchaseListTableViewController.refresh), for: UIControlEvents.valueChanged)
         
