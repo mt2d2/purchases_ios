@@ -102,7 +102,7 @@ public enum AutocompleteType {
     }
     
     // MARK: - public methods
-    public func currentSuggestion() -> NSString?
+    public func currentSuggestion() -> String?
     {
         return self.suggestion
     }
@@ -191,7 +191,7 @@ public enum AutocompleteType {
         if let inputText = self.text
         {
             attributedString.addAttribute(NSForegroundColorAttributeName,
-                                          value: UIColor.clear(),
+                                          value: UIColor.clear,
                                           range: NSRange(location:0, length:inputText.characters.count)
             )
         }

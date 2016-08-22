@@ -62,7 +62,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
         field.layer.add(anim, forKey: nil)
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
                 if self.nameField.text!.isEmpty {
@@ -88,7 +88,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let s = sender as? UIBarButtonItem {
             if s == self.saveButton {
                 // no validation here, done in shouldPerformSegueWithIdentifier
@@ -105,7 +105,7 @@ class AddPurchaseViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
 
         if let field = textField as? AutocompleteField {
-            if field.suggestion?.characters.count > 0 {
+            if (field.suggestion?.characters.count)! > 0 {
                 field.text = field.suggestion
             }
             costField.becomeFirstResponder()

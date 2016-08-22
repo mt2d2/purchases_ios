@@ -50,7 +50,7 @@ class PurchaseListTableViewController: UITableViewController {
     }
     
     func costTotal() -> Double {
-        return self.purchases.reduce(0, combine: {$0 + $1.cost})
+        return self.purchases.reduce(0, {$0 + $1.cost})
     }
     
     func refresh(_ sender: AnyObject) {
@@ -164,8 +164,8 @@ class PurchaseListTableViewController: UITableViewController {
         return purchases.map { $0.name }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nav = segue.destinationViewController as? UINavigationController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? UINavigationController {
             if let dest = nav.viewControllers[0] as? AddPurchaseViewController {
                 let strings = purchaseStrings()
                 if !strings.isEmpty {

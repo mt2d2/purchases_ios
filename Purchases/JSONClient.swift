@@ -11,7 +11,7 @@ import UIKit
 class JSONClient {
     static let JSONActivityNotification = NSNotification.Name("net.mt2d2.Purchases.JSONActivityNotifcation")
     
-    class func basicRequest(_ url: String, method: String, body: String, completionHandler: (Data?, URLResponse?, NSError?) -> Void) {
+    class func basicRequest(_ url: String, method: String, body: String, completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
         var request = URLRequest(url: URL(string: url)!)
         
         let username = "test"
@@ -21,16 +21,15 @@ class JSONClient {
         let base64LoginString = loginData.base64EncodedString(options: .lineLength64Characters)
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
 
-        
         request.httpMethod = method
         request.httpBody = (body as NSString).data(using: String.Encoding.utf8.rawValue)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         // disabled in callback when executed
 
-        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
+        URLSession.shared.dataTask(with: request, completionHandler: completionHandler as! (Data?, URLResponse?, Error?) -> Void).resume()
     }
     
     class func post(_ url: String, body: String) {
@@ -42,11 +41,11 @@ class JSONClient {
     class func get(_ url: String, callback: ((AnyObject) -> Void)) {
         basicRequest(url, method: "GET", body: "") { (data, response, error) in
             do {
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if let json = data {
                     let parsed = try JSONSerialization.jsonObject(with: json, options: JSONSerialization.ReadingOptions.allowFragments)
-                    callback(parsed)
+                    callback(parsed as AnyObject)
                 }
             } catch _ { }
         }

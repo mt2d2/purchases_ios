@@ -41,12 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     @available(iOS 9.0, *)
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+    func application(_ application: UIApplication,
+                              performActionFor shortcutItem: UIApplicationShortcutItem,
+                              completionHandler: @escaping (Bool) -> Void) {
         completionHandler(handleShortcut(shortcutItem))
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
                 self.window?.makeKeyAndVisible()
                 return handleShortcut(shortcutItem)
         }

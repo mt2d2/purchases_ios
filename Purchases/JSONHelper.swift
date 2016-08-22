@@ -101,8 +101,8 @@ public func <-- (property: inout Date?, valueAndFormat: (AnyObject?, AnyObject?)
     if let dateString = convertToNilIfNull(valueAndFormat.0) as? String {
         if let formatString = convertToNilIfNull(valueAndFormat.1) as? String {
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
-            dateFormatter.timeZone = TimeZone(forSecondsFromGMT: 0)
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
             dateFormatter.dateFormat = formatString
             if let newDate = dateFormatter.date(from: dateString) {
                 newValue = newDate
@@ -513,7 +513,7 @@ private func dataStringToObject(_ dataString: String) -> AnyObject? {
     let data: Data = dataString.data(using: String.Encoding.utf8)!
     
     do {
-        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
+        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as AnyObject?
     } catch _ {
         return nil
     }
