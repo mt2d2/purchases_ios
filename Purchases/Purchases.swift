@@ -17,7 +17,7 @@ struct Purchase: Deserializable {
     init(data: [String: AnyObject]) {
         let _ = self.id <-- data["id"]
         let _ = self.name <-- data["name"]
-        let _ = self.timeBought <-- data["time_bought"] //, "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZ") // 2015-06-11T17:24:44.153108381-07:00
+        let _ = self.timeBought <-- (data["time_bought"] , "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZ" as AnyObject?) // 2015-06-11T17:24:44.153108381-07:00
         let _ = self.cost <-- data["cost"]
     }
     
