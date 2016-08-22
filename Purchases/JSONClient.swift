@@ -11,7 +11,7 @@ import UIKit
 class JSONClient {
     static let JSONActivityNotification = NSNotification.Name("net.mt2d2.Purchases.JSONActivityNotifcation")
     
-    class func basicRequest(_ url: String, method: String, body: String, completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
+    class func basicRequest(_ url: String, method: String, body: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         var request = URLRequest(url: URL(string: url)!)
         
         let username = "test"
@@ -29,7 +29,7 @@ class JSONClient {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         // disabled in callback when executed
 
-        URLSession.shared.dataTask(with: request, completionHandler: completionHandler as! (Data?, URLResponse?, Error?) -> Void).resume()
+       URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
     }
     
     class func post(_ url: String, body: String) {
